@@ -23,7 +23,7 @@ const App = () => {
   useEffect(() => {
     const fetchdata = () => {
       dispatch(getUser());
-      y;
+
       dispatch(getPost());
       dispatch(getAllUser());
     };

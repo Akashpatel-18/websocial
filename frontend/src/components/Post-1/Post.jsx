@@ -8,7 +8,6 @@ import DialogUpdate from "../DialogUpdate/DialogUpdate";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost, likeAndUnlikePost } from "../../reducers/postSlice";
 
-
 const Post = ({
   postId,
   ownerId,
@@ -21,13 +20,13 @@ const Post = ({
   createdAt,
 }) => {
   const dispatch = useDispatch();
-  const {user} = useSelector(state => state.posts)
+  const { user } = useSelector((state) => state.posts);
   const [open, setOpen] = useState(false);
   const [update, setUpdate] = useState(false);
 
   const Likes = () => {
     if (likes.length > 0) {
-      return likes.find((like) => like === user?._id) ? (
+      return likes.find((like) => like === user._id) ? (
         <div className="outerLike" style={{ fontSize: "13px" }}>
           <i className="fa-solid fa-heart" style={{ marginRight: "5px" }}></i>
           {likes.length > 2
@@ -44,13 +43,15 @@ const Post = ({
 
     return (
       <div className="outerLike" style={{ fontSize: "13px" }}>
-        <i className="fa-regular fa-heart" style={{ marginRight: "5px" }}></i> like
+        <i className="fa-regular fa-heart" style={{ marginRight: "5px" }}></i>{" "}
+        like
       </div>
     );
   };
 
   const handleLike = () => {
-    dispatch(likeAndUnlikePost(postId))
+    console.log(postId, user, likes);
+    dispatch(likeAndUnlikePost(postId));
   };
 
   const trashHandle = () => {
@@ -65,10 +66,17 @@ const Post = ({
       <div className="container">
         <div className="user">
           <div className="userInfo">
-            {avatar ? (<Avatar className="avatar" src={avatar} />) : (<Avatar className="avatar">{ownerName[0].toUpperCase()}</Avatar>) }
+            {avatar ? (
+              <Avatar className="avatar" src={avatar} />
+            ) : (
+              <Avatar className="avatar">{ownerName[0].toUpperCase()}</Avatar>
+            )}
 
             <div className="details">
-              <Link to={`/profile/${ownerId}`} style={{ textDecoration: "none", color: "inherit" }}>
+              <Link
+                to={`/profile/${ownerId}`}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
                 <span className="name">{ownerName}</span>
               </Link>
               <span className="date">{moment(createdAt).fromNow()}</span>
@@ -90,7 +98,11 @@ const Post = ({
             <div className="item" onClick={handleLike}>
               <Likes />
             </div>
-            <div style={{display:"none"}} className="item" onClick={() => setOpen(!open)}>
+            <div
+              style={{ display: "none" }}
+              className="item"
+              onClick={() => setOpen(!open)}
+            >
               <i className="fa-regular fa-comment"></i>
               <span style={{ fontSize: "12px" }}>
                 {comments.length === 0 ? "" : comments.length} comment
@@ -108,12 +120,7 @@ const Post = ({
           )}
         </div>
 
-        <Comment
-      
-          open={open}
-          postId={postId}
-          comments={comments}
-        />
+        <Comment open={open} postId={postId} comments={comments} />
       </div>
 
       <DialogUpdate

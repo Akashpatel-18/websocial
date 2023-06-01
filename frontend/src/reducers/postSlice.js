@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const getUser = createAsyncThunk('getuser', async () => {
     try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_SERVER}/posts/loginUser`, {withCredentials: true})
+        const response = await axios.get(`/posts/loginUser`, {withCredentials: true})
 
         return response.data
     } catch (error) {
@@ -13,7 +13,7 @@ export const getUser = createAsyncThunk('getuser', async () => {
 
 export const searchUser = createAsyncThunk('searchuser', async (person) => {
     try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_SERVER}/users/search/${person}`, {withCredentials: true})
+        const response = await axios.get(`/users/search/${person}`, {withCredentials: true})
    
         return response.data
     } catch (error) {
@@ -24,7 +24,7 @@ export const searchUser = createAsyncThunk('searchuser', async (person) => {
 
 export const editUser = createAsyncThunk('edituser', async (formValue) => {
     try {
-        const response = await axios.patch(`${process.env.REACT_APP_BACKEND_SERVER}/users/editProfile`, formValue, {withCredentials: true})
+        const response = await axios.patch(`/users/editProfile`, formValue, {withCredentials: true})
 
         return response.data
     } catch (error) {
@@ -34,7 +34,7 @@ export const editUser = createAsyncThunk('edituser', async (formValue) => {
 
 export const otherUser = createAsyncThunk('otherUser', async (id) => {
     try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_SERVER}/posts/otherUser/${id}`, {withCredentials: true})
+        const response = await axios.get(`/posts/otherUser/${id}`, {withCredentials: true})
       
         return response.data
     } catch (error) {
@@ -44,7 +44,7 @@ export const otherUser = createAsyncThunk('otherUser', async (id) => {
 
 export const getAllUser = createAsyncThunk('getAllUser', async () => {
     try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_SERVER}/users/all`, {withCredentials: true})
+        const response = await axios.get(`/users/all`, {withCredentials: true})
 
         return response.data
     } catch (error) {
@@ -54,7 +54,7 @@ export const getAllUser = createAsyncThunk('getAllUser', async () => {
 
 export const getPost = createAsyncThunk('getPosts', async () => {
     try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_SERVER}/posts/all`)
+        const response = await axios.get(`/posts/all`)
 
         return response.data
     } catch (error) {
@@ -64,7 +64,7 @@ export const getPost = createAsyncThunk('getPosts', async () => {
 
 export const getOtherUserPost = createAsyncThunk('getOtherUserPosts', async (id) => {
     try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_SERVER}/posts/otherProfile/${id}`, {withCredentials: true})
+        const response = await axios.get(`/posts/otherProfile/${id}`, {withCredentials: true})
 
         return response.data
     } catch (error) {
@@ -76,7 +76,7 @@ export const createPost = createAsyncThunk('createPost', async (postData) => {
 
     try {
         
-        const response = await axios.post(`${process.env.REACT_APP_BACKEND_SERVER}/posts/create`, postData, {withCredentials: true})
+        const response = await axios.post(`/posts/create`, postData, {withCredentials: true})
        
         return response.data
 
@@ -90,7 +90,7 @@ export const updatePost = createAsyncThunk('updatePost', async ({oldpostId, data
    const id = oldpostId
  
     try {
-        const response  = await axios.patch(`${process.env.REACT_APP_BACKEND_SERVER}/posts/${id}`, data, {withCredentials: true})
+        const response  = await axios.patch(`/posts/${id}`, data, {withCredentials: true})
       
         return response.data
 
@@ -104,7 +104,7 @@ export const likeAndUnlikePost = createAsyncThunk('likeAndUnlikePost', async (id
   
   
      try {
-         const response  = await axios.patch(`${process.env.REACT_APP_BACKEND_SERVER}/posts/likeAndUnlike/${id}`, {withCredentials: true})
+         const response  = await axios.patch(`/posts/likeAndUnlike/${id}`, {withCredentials: true})
        
          return response.data
  
@@ -119,7 +119,7 @@ export const deletePost = createAsyncThunk('deletePost', async (id) => {
 
     try {
         
-        await axios.delete(`${process.env.REACT_APP_BACKEND_SERVER}/posts/${id}`, {withCredentials: true})
+        await axios.delete(`/posts/${id}`, {withCredentials: true})
         return id
 
     } catch (error) {
@@ -131,7 +131,7 @@ export const deletePost = createAsyncThunk('deletePost', async (id) => {
 export const commentPost = createAsyncThunk('commentPost', async ({id,comment}) => {
     console.log(comment)
      try {
-         const response  = await axios.patch(`${process.env.REACT_APP_BACKEND_SERVER}/posts/comment/${id}`, comment, {withCredentials: true})
+         const response  = await axios.patch(`/posts/comment/${id}`, comment, {withCredentials: true})
         console.log(response.data)
          return response.data
  

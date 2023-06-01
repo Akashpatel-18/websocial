@@ -10,6 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./reducers/authSlice";
 import { getAllUser, getPost } from "./reducers/postSlice";
 import { getUser } from "./reducers/postSlice";
+import axios from "axios";
+
+axios.defaults.baseURL = "https://websocial-backend.onrender.com";
 
 const App = () => {
   const dispatch = useDispatch();
